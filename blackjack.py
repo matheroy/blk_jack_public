@@ -43,7 +43,7 @@ def hit_or_stand(deck,hand):
         #print(x, x[0])
         if x[0].lower() == 'h':
             hit(deck, hand)
-            
+
 
         elif x[0].lower() == 's':
             print("Player Stands, Dealer's turn. ")
@@ -146,7 +146,7 @@ def play():
             dealer_hand.add_card(new_deck.deal())
 
         # Set up the Player's intial count of chips
-        if GAME_COUNT == 1: 
+        if GAME_COUNT == 1:
             player1_chips = Chips()
         #dealer has infinite amout of money
 
@@ -167,7 +167,7 @@ def play():
 
             # Show cards (but keep one dealer card hidden)
             show_some(player1_hand, dealer_hand)
-            
+
             # If player's hand exceeds 21, run player_busts() and break out of loop
             if player1_hand.value > 21:
                 player_busts(player1_hand, dealer_hand, player1_chips)
@@ -212,12 +212,12 @@ def play():
     return
 
 
-def main_blackjack(testing=0):
+def main_blackjack():
     '''call all your tests and other activities'''
 
-    if testing: 
-        import test_blackjack
-        test_blackjack.validation_tests() 
+    '''uncomment next 2 lines if you want to run the tests prior to play'''
+    #import test_blackjack
+    #test_blackjack.validation_tests()
     play()
     return
 
@@ -225,12 +225,7 @@ def main_blackjack(testing=0):
 if __name__ == '__main__':
 
     #print("in Main")
+    # use sys.argv in case we want to support any startup arguement(s)
     #print(sys.argv, type(sys.argv), len(sys.argv))
-    #for index,arg in enumerate(sys.argv):
-    #    print(index, arg)
-    if len(sys.argv) > 1:
-        test = sys.argv[1]
-    else:
-        test = 0
-    
-    main_blackjack(test)
+
+    main_blackjack()

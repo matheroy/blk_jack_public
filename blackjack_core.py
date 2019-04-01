@@ -45,6 +45,7 @@ class Deck():
 
     def __init__(self):
         self.deck = []  # start with an empty list
+        self.shuffled = False
         for suit in SUITS:
             for rank in RANKS:
                 self.deck.append(Card(suit, rank))
@@ -58,7 +59,12 @@ class Deck():
 
     def shuffle(self):
         '''shuffle the cards in the deck'''
-        random.shuffle(self.deck)
+        try:
+            random.shuffle(self.deck)
+            self.shuffled = True
+        except:
+            raise
+
 
     def deal(self):
         '''deal a single card'''
@@ -74,7 +80,9 @@ class Hand():
         self.cards = []  # start with an empty list as we did in the Deck class
         self.value = 0   # start with zero value
         self.aces = 0    # add an attribute to keep track of aces
-        self.status = None #player hand status of whether they're continuing or staying
+        #player hand status of whether they're continuing or staying, can
+        # also be used to determine if a player is active as well
+        self.status = 1
 
     def add_card(self, card):
         '''card passed in will be from Deck.deal() --> Single Card(suit, rank)'''
